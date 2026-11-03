@@ -13,6 +13,18 @@ Run the official Linux AppImage with private Ubuntu 22.04 libraries. This projec
 
 Download the four files yourself from their official sources. Keep the `.deb` files as files; do **not** install them with `dpkg -i`.
 
+### Ubuntu library downloads
+
+Download these exact **amd64** packages from the Ubuntu archive:
+
+| Package | Direct download |
+| --- | --- |
+| `libc6` 2.35-0ubuntu3.15 | [libc6_2.35-0ubuntu3.15_amd64.deb](https://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6_2.35-0ubuntu3.15_amd64.deb) |
+| `libfreetype6` 2.11.1+dfsg-1ubuntu0.4 | [libfreetype6_2.11.1+dfsg-1ubuntu0.4_amd64.deb](https://archive.ubuntu.com/ubuntu/pool/main/f/freetype/libfreetype6_2.11.1+dfsg-1ubuntu0.4_amd64.deb) |
+| `libgbm1` 23.2.1-1ubuntu3.1~22.04.4 | [libgbm1_23.2.1-1ubuntu3.1~22.04.4_amd64.deb](https://archive.ubuntu.com/ubuntu/pool/main/m/mesa/libgbm1_23.2.1-1ubuntu3.1~22.04.4_amd64.deb) |
+
+The installer checks each package's name, version, and architecture before extracting it. The official CC Switch AppImage must be downloaded separately.
+
 ## Install
 
 ```bash

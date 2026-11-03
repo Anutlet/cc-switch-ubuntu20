@@ -13,6 +13,18 @@
 
 请自行从官方渠道下载上述四个文件。三个 `.deb` 文件只供脚本解压使用，**不要**通过 `dpkg -i` 安装到系统中。
 
+### Ubuntu 库文件下载
+
+请从 Ubuntu 官方软件源下载以下精确版本的 **amd64** 软件包：
+
+| 软件包 | 直接下载 |
+| --- | --- |
+| `libc6` 2.35-0ubuntu3.15 | [libc6_2.35-0ubuntu3.15_amd64.deb](https://archive.ubuntu.com/ubuntu/pool/main/g/glibc/libc6_2.35-0ubuntu3.15_amd64.deb) |
+| `libfreetype6` 2.11.1+dfsg-1ubuntu0.4 | [libfreetype6_2.11.1+dfsg-1ubuntu0.4_amd64.deb](https://archive.ubuntu.com/ubuntu/pool/main/f/freetype/libfreetype6_2.11.1+dfsg-1ubuntu0.4_amd64.deb) |
+| `libgbm1` 23.2.1-1ubuntu3.1~22.04.4 | [libgbm1_23.2.1-1ubuntu3.1~22.04.4_amd64.deb](https://archive.ubuntu.com/ubuntu/pool/main/m/mesa/libgbm1_23.2.1-1ubuntu3.1~22.04.4_amd64.deb) |
+
+安装脚本会先检查各软件包的名称、版本和架构，再解压使用。官方 CC Switch AppImage 需要另外下载。
+
 ## 安装
 
 ```bash
