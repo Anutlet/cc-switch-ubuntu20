@@ -1,0 +1,49 @@
+diff --git a/.gitignore b/.gitignore
+index 525d4a7b..2de552c8 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -23,6 +23,13 @@ nul
+ flatpak/cc-switch.deb
+ flatpak-build/
+ flatpak-repo/
++dist-flatpak/
++.cache/ubuntu22-build/
++.cache/flatpak-system/
++manual-deb-extract/
++manual-flatpak-build/
++manual-flatpak-repo/
++src-tauri/target/
+ .worktrees/
+ .spec-workflow/
+ copilot-api
+diff --git a/README_ZH.md b/README_ZH.md
+index 321cab4c..75b6eab7 100644
+--- a/README_ZH.md
++++ b/README_ZH.md
+@@ -22,6 +22,8 @@
+ 
+ </div>
+ 
++Ubuntu 20.04 用户可参考 [本地源码编译与 Flatpak 安装指南](UBUNTU_20.04_INSTALLATION.md)。该流程在隔离的 Ubuntu 22.04 容器中编译当前版本，不修改宿主机 glibc。
++
+ ## ❤️赞助商
+ 
+ > [想出现在这里？](mailto:support@ccswitch.io)
+diff --git a/flatpak/README.md b/flatpak/README.md
+index 714d22a5..8d237f43 100644
+--- a/flatpak/README.md
++++ b/flatpak/README.md
+@@ -1,5 +1,13 @@
+ # Flatpak Build Guide
+ 
++For an Ubuntu 20.04 host, use the version-aware build script at the repository root:
++
++```bash
++scripts/build-flatpak-artifact.sh
++```
++
++It builds the checked-out source in an Ubuntu 22.04 container and packages the resulting `.deb` using the runtime version in this directory's manifest. See [the Ubuntu 20.04 guide](../UBUNTU_20.04_INSTALLATION.md) for installation and verification.
++
+ This directory contains the Flatpak manifest (`com.ccswitch.desktop`) for CC Switch, used to convert the generated `.deb` artifact into an installable `.flatpak` package via CI or local builds.
+ 
+ ## Dependencies

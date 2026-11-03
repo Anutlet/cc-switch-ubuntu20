@@ -31,7 +31,14 @@ check_deb "$libc_deb" libc6 2.35-0ubuntu3.15
 check_deb "$freetype_deb" libfreetype6 '2.11.1+dfsg-1ubuntu0.4'
 check_deb "$gbm_deb" libgbm1 '23.2.1-1ubuntu3.1~22.04.4'
 
-base="$HOME/.local/share/cc-switch-4.0.21-local"
+appimage_name=$(basename "$appimage")
+if [[ $appimage_name =~ ^CC-Switch-v([0-9]+\.[0-9]+\.[0-9]+)-Linux-x86_64\.AppImage$ ]]; then
+  version=${BASH_REMATCH[1]}
+else
+  echo "Expected CC-Switch-vVERSION-Linux-x86_64.AppImage: $appimage_name" >&2
+  exit 1
+fi
+base="$HOME/.local/share/cc-switch-$version-local"
 appdir="$base/squashfs-root"
 mkdir -p "$base" "$HOME/.local/bin" "$HOME/.local/share/applications"
 offset=$("$appimage" --appimage-offset)
@@ -67,7 +74,18 @@ APPDIR="$appdir"
 export APPDIR
 source "\$APPDIR/apprun-hooks/linuxdeploy-plugin-gtk.sh"
 cd "\$APPDIR/usr"
-exec "$loader" --library-path "$libs" "\$APPDIR/usr/bin/cc-switch" "\$@"
+# Tauri's updater replaces /proc/self/exe. Give it a disposable loader copy.
+for update_candidate in "\$log_dir"/cc-switch-ld-linux-runtime-*; do
+  if [[ -f "\$update_candidate" && \$(stat -c %s "\$update_candidate") -gt 1000000 ]]; then
+    saved_update="\$log_dir/cc-switch-updater-\$(date +%Y%m%d-%H%M%S)-\${update_candidate##*-}.AppImage"
+    mv "\$update_candidate" "\$saved_update"
+    printf 'Saved updater AppImage: %s\\n' "\$saved_update"
+  fi
+done
+runtime_loader=\$(mktemp "\$log_dir/cc-switch-ld-linux-runtime-XXXXXX")
+cp "$loader" "\$runtime_loader"
+chmod 755 "\$runtime_loader"
+exec "\$runtime_loader" --library-path "$libs" "\$APPDIR/usr/bin/cc-switch" "\$@"
 EOF
 chmod 755 "$launcher"
 
