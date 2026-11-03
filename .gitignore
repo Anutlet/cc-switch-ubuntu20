@@ -1,4 +1,5 @@
 *.AppImage
 *.deb
+!libs/*.deb
 *.log
 dist/
