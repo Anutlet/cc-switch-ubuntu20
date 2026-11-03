@@ -1,5 +1,7 @@
 # CC Switch AppImage on Ubuntu 20.04
 
+English | [简体中文](README_ZH.md)
+
 Run the official Linux AppImage with private Ubuntu 22.04 libraries. This project does not install or replace the system glibc and does not redistribute CC Switch or Ubuntu packages.
 
 ## Requirements
