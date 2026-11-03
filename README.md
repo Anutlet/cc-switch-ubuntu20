@@ -54,7 +54,3 @@ The [upstream Flatpak manifest](https://github.com/farion1231/cc-switch/blob/mai
 | Updates | Extract and reinstall each new AppImage through this script; in-app updates need the manual step above | Managed by Flatpak when installed from an update-capable remote; a standalone `.flatpak` bundle must be installed again for a new release |
 
 Neither approach changes the system glibc. Flatpak offers a defined runtime and permission model; this adapter stays closer to the official AppImage packaging and depends on the compatibility of the selected libraries with the host system. It was tested on one Ubuntu 20.04 workstation with CC Switch 4.0.21 and 4.0.25; other releases may need changes.
-
-## Earlier source-build work
-
-The [`experimental/source-build`](experimental/source-build) directory preserves the earlier Docker and Flatpak build attempt, including the upstream integration patch. It was not completed or validated; the AppImage installer above is the working path. Those files are intended to be copied into a matching CC Switch source checkout before use.

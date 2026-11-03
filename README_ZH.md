@@ -54,7 +54,3 @@ Ubuntu 20.04 自带 glibc 2.31，而已测试的官方 AppImage 需要较新 gli
 | 更新方式 | 每个新 AppImage 需用本脚本解压安装；应用内更新还需执行上述手动步骤 | 从支持更新的远程仓库安装时可由 Flatpak 管理更新；独立 `.flatpak` 文件需要重新安装新版本 |
 
 两种方案都不修改系统 glibc。Flatpak 提供明确的运行环境和权限模型；本方案沿用官方 AppImage 的打包内容，依赖所选运行库与宿主系统兼容。当前只在一台 Ubuntu 20.04 工作站上验证过 CC Switch 4.0.21 和 4.0.25，其他版本可能需要调整。
-
-## 早期源码构建尝试
-
-[`experimental/source-build`](experimental/source-build) 保存了早期尝试使用 Docker 和 Flatpak 构建的文件，包括对上游源码的集成补丁。该方案尚未完成验证；上面的 AppImage 安装脚本是目前可用的方案。这些文件需要复制到匹配版本的 CC Switch 源码目录后才能使用。
